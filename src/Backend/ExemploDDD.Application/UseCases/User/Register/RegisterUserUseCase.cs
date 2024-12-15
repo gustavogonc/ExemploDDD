@@ -1,4 +1,5 @@
-﻿using ExemploDDD.Communication.Request;
+﻿using AutoMapper;
+using ExemploDDD.Communication.Request;
 using ExemploDDD.Domain.Entities;
 using ExemploDDD.Domain.Repositories;
 using ExemploDDD.Domain.Repositories.User;
@@ -11,24 +12,21 @@ public class RegisterUserUseCase : IRegisterUserUseCase
     private readonly IPasswordEncrypter _cryptography;
     private readonly IUserWriteOnlyRepository _repository;
     private readonly IUnitOfWork _unitOfWork;
-    public RegisterUserUseCase(IPasswordEncrypter cryptography, IUserWriteOnlyRepository repository, IUnitOfWork unitOfWork)
+    private readonly IMapper _mapper;
+    public RegisterUserUseCase(IPasswordEncrypter cryptography, IUserWriteOnlyRepository repository, IUnitOfWork unitOfWork, IMapper mapper)
     {
         _cryptography = cryptography;
         _repository = repository;
         _unitOfWork = unitOfWork;
+        _mapper = mapper;
     }
     public async Task ExecuteAsync(RegisterUserRequest userRequest)
     {
         await Validate(userRequest);
 
-        string hashedPassword = _cryptography.Encrypt(userRequest.Password);
+        var user = _mapper.Map<Domain.Entities.User>(userRequest);
 
-        Domain.Entities.User user = new()
-        {
-            Name = userRequest.Name,
-            Email = userRequest.Email,
-            Password = hashedPassword,
-        };
+        user.Password = _cryptography.Encrypt(userRequest.Password);
 
         await _repository.CreateUserAsync(user);
 

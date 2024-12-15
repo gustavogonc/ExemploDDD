@@ -4,9 +4,11 @@ namespace ExemploDDD.Infraestructure.DataAccess
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public async Task Commit()
+        private readonly ExemploDDDDbContext _dbContext;
+        public UnitOfWork(ExemploDDDDbContext dbContext)
         {
-            throw new NotImplementedException();
+            _dbContext = dbContext;
         }
+        public async Task Commit() => await _dbContext.SaveChangesAsync();
     }
 }

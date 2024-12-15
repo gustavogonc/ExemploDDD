@@ -1,4 +1,9 @@
 ﻿namespace ExemploDDD.Communication.Request
 {
-    public record RegisterUserRequest(string Name, string Email, string Password);
+    public class RegisterUserRequest
+    {
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+    } 
 }

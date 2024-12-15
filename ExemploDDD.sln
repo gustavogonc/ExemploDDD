@@ -9,23 +9,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{1312581D-8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{BE8AB2BC-1E99-4F52-9440-28BF90424517}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExemploDDD.API", "src\Backend\ExemploDDD.API\ExemploDDD.API.csproj", "{8B42C874-FC51-4263-AA56-6EE6532AABE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExemploDDD.API", "src\Backend\ExemploDDD.API\ExemploDDD.API.csproj", "{8B42C874-FC51-4263-AA56-6EE6532AABE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExemploDDD.Application", "src\Backend\ExemploDDD.Application\ExemploDDD.Application.csproj", "{DA563A7B-0B5D-457F-9F5A-DEA0F8C48686}"
-	ProjectSection(ProjectDependencies) = postProject
-		{49E712FA-E7C9-4D7C-9196-A05F7D34E289} = {49E712FA-E7C9-4D7C-9196-A05F7D34E289}
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExemploDDD.Application", "src\Backend\ExemploDDD.Application\ExemploDDD.Application.csproj", "{DA563A7B-0B5D-457F-9F5A-DEA0F8C48686}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExemploDDD.Domain", "src\Backend\ExemploDDD.Domain\ExemploDDD.Domain.csproj", "{D916E5F1-DCC2-4149-A54F-AB106A50CF91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExemploDDD.Domain", "src\Backend\ExemploDDD.Domain\ExemploDDD.Domain.csproj", "{D916E5F1-DCC2-4149-A54F-AB106A50CF91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExemploDDD.Infraestructure", "src\Backend\ExemploDDD.Infraestructure\ExemploDDD.Infraestructure.csproj", "{247F47AF-27C9-46D9-BB25-6C82CC737E14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExemploDDD.Infraestructure", "src\Backend\ExemploDDD.Infraestructure\ExemploDDD.Infraestructure.csproj", "{247F47AF-27C9-46D9-BB25-6C82CC737E14}"
 	ProjectSection(ProjectDependencies) = postProject
 		{D916E5F1-DCC2-4149-A54F-AB106A50CF91} = {D916E5F1-DCC2-4149-A54F-AB106A50CF91}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExemploDDD.Communication", "src\Shared\ExemploDDD.Communication\ExemploDDD.Communication.csproj", "{49E712FA-E7C9-4D7C-9196-A05F7D34E289}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{2E8FB1F2-2FC6-43AB-829A-47741E76B9E8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{64FF1500-CE88-4CDB-AD1A-9FBEEB8B1A33}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExemploDDD.Communication", "src\Shared\ExemploDDD.Communication\ExemploDDD.Communication.csproj", "{95E4D6C6-21BB-43D2-85EB-353ABBDFCDF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,10 +46,10 @@ Global
 		{247F47AF-27C9-46D9-BB25-6C82CC737E14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{247F47AF-27C9-46D9-BB25-6C82CC737E14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{247F47AF-27C9-46D9-BB25-6C82CC737E14}.Release|Any CPU.Build.0 = Release|Any CPU
-		{49E712FA-E7C9-4D7C-9196-A05F7D34E289}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{49E712FA-E7C9-4D7C-9196-A05F7D34E289}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{49E712FA-E7C9-4D7C-9196-A05F7D34E289}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{49E712FA-E7C9-4D7C-9196-A05F7D34E289}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95E4D6C6-21BB-43D2-85EB-353ABBDFCDF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95E4D6C6-21BB-43D2-85EB-353ABBDFCDF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95E4D6C6-21BB-43D2-85EB-353ABBDFCDF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95E4D6C6-21BB-43D2-85EB-353ABBDFCDF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,8 +60,8 @@ Global
 		{DA563A7B-0B5D-457F-9F5A-DEA0F8C48686} = {BE8AB2BC-1E99-4F52-9440-28BF90424517}
 		{D916E5F1-DCC2-4149-A54F-AB106A50CF91} = {BE8AB2BC-1E99-4F52-9440-28BF90424517}
 		{247F47AF-27C9-46D9-BB25-6C82CC737E14} = {BE8AB2BC-1E99-4F52-9440-28BF90424517}
-		{49E712FA-E7C9-4D7C-9196-A05F7D34E289} = {64FF1500-CE88-4CDB-AD1A-9FBEEB8B1A33}
-		{64FF1500-CE88-4CDB-AD1A-9FBEEB8B1A33} = {F1321A52-1992-4FCA-AFCC-D3898523A185}
+		{2E8FB1F2-2FC6-43AB-829A-47741E76B9E8} = {F1321A52-1992-4FCA-AFCC-D3898523A185}
+		{95E4D6C6-21BB-43D2-85EB-353ABBDFCDF9} = {2E8FB1F2-2FC6-43AB-829A-47741E76B9E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0C88824B-7C34-43C6-875D-86707BF76472}

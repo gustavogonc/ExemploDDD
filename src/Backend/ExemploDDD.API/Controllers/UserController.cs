@@ -10,7 +10,7 @@ namespace ExemploDDD.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        //[Authorize]
+    
         [HttpPost]
         [Route("register-new-user")]
         public async Task<IActionResult> RegisterUser([FromServices] IRegisterUserUseCase useCase, RegisterUserRequest request)
@@ -19,6 +19,7 @@ namespace ExemploDDD.API.Controllers
             return Created();
         }
 
+        [Authorize]
         [HttpGet]
         [Route("recover-active-users")]
         public async Task<IActionResult> RecoverAllActiveUsers([FromServices] IRecoverActiveUsersUseCase useCase)

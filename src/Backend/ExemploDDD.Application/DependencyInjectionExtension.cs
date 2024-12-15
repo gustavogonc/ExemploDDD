@@ -1,4 +1,5 @@
 ﻿using ExemploDDD.Application.Services.AutoMapper;
+using ExemploDDD.Application.UseCases.Login;
 using ExemploDDD.Application.UseCases.User.ListActiveUsers;
 using ExemploDDD.Application.UseCases.User.Register;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,6 +22,7 @@ public static class DependencyInjectionExtension
     {
         services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
         services.AddScoped<IRecoverActiveUsersUseCase, RecoverActiveUsersUseCase>();
+        services.AddScoped<IDoLoginUseCase, DoLoginUseCase>();
     }
 }
 

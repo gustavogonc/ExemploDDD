@@ -1,14 +1,19 @@
 ﻿using ExemploDDD.Domain.Repositories;
 using ExemploDDD.Domain.Repositories.User;
 using ExemploDDD.Domain.Security.Cryptography;
+using ExemploDDD.Domain.Security.Tokens;
 using ExemploDDD.Infraestructure.DataAccess;
 using ExemploDDD.Infraestructure.DataAccess.Repositories;
 using ExemploDDD.Infraestructure.Extensions;
 using ExemploDDD.Infraestructure.Security.Cryptography;
+using ExemploDDD.Infraestructure.Security.Tokens.Access.Generator;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Text;
 
 namespace ExemploDDD.Infraestructure;
 public static class DependencyInjectionExtensions
@@ -19,6 +24,7 @@ public static class DependencyInjectionExtensions
         AddPasswordEncrypter(services);
         AddRepositories(services);
         AddSwagger(services);
+        AddTokens(services, configuration);
     }
 
 
@@ -78,6 +84,33 @@ public static class DependencyInjectionExtensions
                     new List<string>()
                 }
             });
+        });
+    }
+
+    private static void AddTokens(IServiceCollection services, IConfiguration configuration)
+    {
+        uint expirationTimeHours = configuration.GetValue<uint>("JwtConfiguration:ValidHours");
+        string issuer = configuration.GetValue<string>("JwtConfiguration:Issuer")!;
+
+        services.AddScoped<IAccessTokenGenerator>(option => new JwtTokenGenerator(expirationTimeHours, issuer));
+
+        services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        }).AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = configuration.GetValue<string>("JwtConfiguration:Issuer"),
+                ValidAudience = configuration.GetValue<string>("JwtConfiguration:Audience"),
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetValue<string>("JwtConfiguration:Issuer")!)),
+                ClockSkew = TimeSpan.Zero
+            };
         });
     }
 }

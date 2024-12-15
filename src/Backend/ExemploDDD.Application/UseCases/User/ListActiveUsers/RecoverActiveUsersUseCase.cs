@@ -1,17 +1,21 @@
-﻿using ExemploDDD.Communication.Response;
+﻿using AutoMapper;
+using ExemploDDD.Communication.Response;
 using ExemploDDD.Domain.Repositories.User;
 
 namespace ExemploDDD.Application.UseCases.User.ListActiveUsers;
 public class RecoverActiveUsersUseCase : IRecoverActiveUsersUseCase
 {
     private readonly IUserReadOnlyRepository _repository;
-    public RecoverActiveUsersUseCase(IUserReadOnlyRepository repository)
+    private readonly IMapper _mapper;
+    public RecoverActiveUsersUseCase(IUserReadOnlyRepository repository, IMapper mapper)
     {
         _repository = repository;
+        _mapper = mapper;
     }
-    public Task<IList<ResponseUserProfileJson>> ExecuteAsync()
+    public async Task<IList<ResponseUserProfileJson>> ExecuteAsync()
     {
-        throw new NotImplementedException();
+        var users = await _repository.ReturnActiveUsersAsync();
+        return _mapper.Map<IList<ResponseUserProfileJson>>(users);
     }
 }
 

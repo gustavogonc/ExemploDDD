@@ -10,11 +10,7 @@ public class UserRepository : IUserReadOnlyRepository, IUserWriteOnlyRepository
     {
         _dbContext = dbContext;
     }
-    public async Task CreateUserAsync(User userRequest)
-    {
-        await _dbContext.Users.AddAsync(userRequest);
-        await _dbContext.SaveChangesAsync();
-    }
+    public async Task CreateUserAsync(User userRequest) => await _dbContext.Users.AddAsync(userRequest);
 
     public async Task<List<User>> ReturnActiveUsersAsync()
     {

@@ -3,6 +3,6 @@
 namespace ExemploDDD.Application.UseCases.User.Register;
 public interface IRegisterUserUseCase
 {
-    Task RegisterNewUserAsync(RegisterUserRequest userRequest);
+    Task ExecuteAsync(RegisterUserRequest userRequest);
 }
 
